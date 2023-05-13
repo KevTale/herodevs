@@ -17,6 +17,7 @@ interface TodosState {
 })
 export class TodosStore extends ComponentStore<TodosState> {
   readonly todos = this.selectSignal(({ todos }) => todos);
+  readonly hasTodos = this.selectSignal(({ todos }) => todos.length > 0);
 
   constructor() {
     super({ todos: [] });

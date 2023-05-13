@@ -1,0 +1,2 @@
+- used nx because angular 16 with jest and testing library fails for some reasons
+- change data.service.ts to todos.store.ts

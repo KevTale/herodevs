@@ -1,0 +1,2 @@
+- due to the simplicity of the form we could have used a template driven form but I decided to 
+  use a reactive form as I know the feature will grow and it will be easier to maintain. But template driven form would be fine as well (see: https://www.youtube.com/watch?v=L7rGogdfe2Q and https://timdeschryver.dev/blog/a-practical-guide-to-angular-template-driven-forms)
