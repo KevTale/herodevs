@@ -1,0 +1,1 @@
+- the difficulty is to reuse parts of the UI and features and adding new ones on top of them so I went for NgTemplateOutlet

@@ -38,7 +38,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
         </ul>
       </nav>
     </header>
-    <main class="p-4">
+    <main>
       <router-outlet></router-outlet>
     </main>
   `,

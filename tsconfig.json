@@ -23,7 +23,8 @@
     "paths": {
       "@features/*": ["src/app/shared-features/*"],
       "@routes/*": ["src/app/routes/*"],
-      "@ui/*": ["src/app/shared-ui/*"]
+      "@ui/*": ["src/app/shared-ui/*"],
+      "@utils/*": ["src/app/shared-utils/*"]
     }
   },
   "files": [],

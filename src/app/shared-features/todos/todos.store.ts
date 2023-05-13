@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type Todo = {
   id: string;
+  show: boolean;
   text: string;
   completed: boolean;
 };
@@ -29,11 +30,21 @@ export class TodosStore extends ComponentStore<TodosState> {
       ...state.todos,
       {
         id: uuidv4(),
+        show: true,
         completed: false,
         text: payload.text,
       },
     ],
   }));
+
+  readonly edit = this.updater(
+    (state, payload: { id: string; text: string }) => ({
+      ...state,
+      todos: state.todos.map((todo) =>
+        todo.id === payload.id ? { ...todo, text: payload.text } : todo
+      ),
+    })
+  );
 
   readonly remove = this.updater((state, payload: { id: string }) => ({
     ...state,
