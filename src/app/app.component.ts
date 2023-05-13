@@ -1,14 +1,36 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
+  selector: 'hd-root',
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'herodevs-test-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, RouterLink],
+  template: `
+    <header class="bg-blue-500 p-4">
+      <nav class="flex">
+        <ul class="flex space-x-2 text-white hover:[&_li]:text-yellow-500">
+          <li>
+            <a routerLink="/task-1">Task 1</a>
+          </li>
+          <li>
+            <a routerLink="/task-2">Task 2</a>
+          </li>
+          <li>
+            <a routerLink="/task-3">Task 3</a>
+          </li>
+          <li>
+            <a routerLink="/task-4">Task 4</a>
+          </li>
+          <li>
+            <a routerLink="/task-5">Task 5</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="p-4">
+      <router-outlet></router-outlet>
+    </main>
+  `,
 })
-export class AppComponent {
-  title = 'herodevs-test';
-}
+export class AppComponent {}
