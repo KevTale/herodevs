@@ -5,12 +5,14 @@ import { v4 as uuidv4 } from 'uuid';
 export type Todo = {
   id: string;
   show: boolean;
+  category?: string;
   text: string;
   completed: boolean;
 };
 
 interface TodosState {
   todos: Todo[];
+  categories: string[];
 }
 
 @Injectable({
@@ -19,9 +21,10 @@ interface TodosState {
 export class TodosStore extends ComponentStore<TodosState> {
   readonly todos = this.selectSignal(({ todos }) => todos);
   readonly hasTodos = this.selectSignal(({ todos }) => todos.length > 0);
+  readonly categories = this.selectSignal(({ categories }) => categories);
 
   constructor() {
-    super({ todos: [] });
+    super({ todos: [], categories: [] });
   }
 
   readonly add = this.updater((state, payload: { text: string }) => ({
@@ -43,6 +46,25 @@ export class TodosStore extends ComponentStore<TodosState> {
       todos: state.todos.map((todo) =>
         todo.id === payload.id ? { ...todo, text: payload.text } : todo
       ),
+    })
+  );
+
+  readonly addWithCategory = this.updater(
+    (state, payload: { text: string; category: string }) => ({
+      ...state,
+      todos: [
+        ...state.todos,
+        {
+          id: uuidv4(),
+          show: true,
+          category: payload.category!,
+          completed: false,
+          text: payload.text,
+        },
+      ],
+      categories: state.categories.includes(payload.category)
+        ? state.categories
+        : [...state.categories, payload.category],
     })
   );
 

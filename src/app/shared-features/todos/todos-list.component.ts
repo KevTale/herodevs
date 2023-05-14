@@ -19,6 +19,12 @@ import { TodosStore } from './todos.store';
         >
           <main class="flex justify-between align-baseline mb-6">
             <p class="text-xl font-bold">{{ todo.text }}</p>
+            <small
+              class="rounded-3xl bg-slate-600 text-white p-2"
+              *ngIf="todo.category && withCategory"
+            >
+              {{ todo.category }}
+            </small>
           </main>
           <footer class="flex ml-auto space-x-2">
             <ng-container

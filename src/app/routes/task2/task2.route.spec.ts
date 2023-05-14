@@ -8,13 +8,6 @@ describe('Task2Route', () => {
 
   beforeEach(async () => {
     component = await render(Task2Route);
-
-    HTMLDialogElement.prototype.show = jest.fn(function mock(
-      this: HTMLDialogElement
-    ) {
-      this.open = true;
-    });
-
     HTMLDialogElement.prototype.showModal = jest.fn(function mock(
       this: HTMLDialogElement
     ) {
@@ -28,7 +21,10 @@ describe('Task2Route', () => {
     });
   });
   it('should be able to edit todo', async () => {
-    await addTodo(component, 'Buy butter');
+    await addTodo({
+      component,
+      name: 'Buy butter',
+    });
 
     await editTodo({
       component,
@@ -41,7 +37,10 @@ describe('Task2Route', () => {
   });
 
   it('should not update todo when the dialog is cancelled', async () => {
-    await addTodo(component, 'Buy butter');
+    await addTodo({
+      component,
+      name: 'Buy butter',
+    });
     await editTodo({
       component,
       name: 'Buy butter',
@@ -49,7 +48,6 @@ describe('Task2Route', () => {
       action: 'cancel',
     });
 
-    // we expect the todo to be unchanged
     expect(component.getByText(/buy butter/i)).toBeInTheDocument();
   });
 });
