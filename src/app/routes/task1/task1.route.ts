@@ -38,27 +38,4 @@ import { TitleComponent } from '@ui/title/title.component';
     RemoveTodoComponent,
   ],
 })
-export class Task1Route {
-  readonly todosStore = inject(TodosStore);
-  readonly fb = inject(FormBuilder);
-  readonly form = this.fb.group({
-    todoText: ['', [Validators.required, Validators.minLength(3)]],
-  });
-
-  addTodo() {
-    if (this.form.valid) {
-      this.todosStore.add({
-        text: this.form.value.todoText!,
-      });
-      this.form.reset();
-    }
-  }
-
-  remove(id: string) {
-    this.todosStore.remove({ id });
-  }
-
-  trackByTodoId(index: number, todo: { id: string }) {
-    return todo.id;
-  }
-}
+export class Task1Route {}
