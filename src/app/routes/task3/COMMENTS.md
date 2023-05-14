@@ -1,0 +1,1 @@
+- I went for a different component (add-todo-with-category) rather than adding some @Input() and extra logic to handle the two situations, it makes the code more readable and maintainable
