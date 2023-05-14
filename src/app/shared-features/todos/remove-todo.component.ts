@@ -13,9 +13,25 @@ import { TodosStore } from './todos.store';
 })
 export class RemoveTodoComponent {
   @Input({ required: true }) id!: string;
+  @Input() withConfirmation = false;
   readonly todosStore = inject(TodosStore);
 
   remove() {
-    this.todosStore.remove({ id: this.id });
+    if (!this.withConfirmation) {
+      this.todosStore.remove({ id: this.id });
+      return;
+    }
+
+    const todo = this.todosStore.todo(this.id);
+
+    if (
+      confirm(
+        `Are you sure you want to remove "${todo()?.category} - ${
+          todo()?.text
+        }"?`
+      )
+    ) {
+      this.todosStore.remove({ id: this.id });
+    }
   }
 }

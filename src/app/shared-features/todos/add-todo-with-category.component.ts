@@ -28,23 +28,25 @@ import { TodosStore } from './todos.store';
           ></option>
         </datalist>
 
-        <input
-          class="border border-gray-300 rounded-md p-2 outline-none"
-          name="todoText"
-          id="todoText"
-          type="text"
-          placeholder="Buy milk..."
-          formControlName="todoText"
-        />
-        <small
-          class="text-red-500"
-          *ngIf="
-            form.controls['todoText'].invalid &&
-            form.controls['todoText'].touched &&
-            !form.controls['todoText'].pristine
-          "
-          >should have at least 3 characters</small
-        >
+        <div class="flex flex-col">
+          <input
+            class="border border-gray-300 rounded-md p-2 outline-none"
+            name="todoText"
+            id="todoText"
+            type="text"
+            placeholder="Buy milk..."
+            formControlName="todoText"
+          />
+          <small
+            class="text-red-500"
+            *ngIf="
+              form.controls['todoText'].invalid &&
+              form.controls['todoText'].touched &&
+              !form.controls['todoText'].pristine
+            "
+            >should have at least 3 characters</small
+          >
+        </div>
 
         <hd-button type="submit" label="Add todo" theme="primary" />
       </div>

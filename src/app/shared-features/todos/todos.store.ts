@@ -20,9 +20,14 @@ interface TodosState {
 })
 export class TodosStore extends ComponentStore<TodosState> {
   readonly todos = this.selectSignal(({ todos }) => todos);
+  readonly todo = (id: string) =>
+    this.selectSignal(({ todos }) => todos.find((todo) => todo.id === id));
   readonly hasTodos = this.selectSignal(({ todos }) => todos.length > 0);
-  readonly categories = this.selectSignal(({ categories }) => categories);
-
+  readonly categories = this.selectSignal(({ categories, todos }) =>
+    categories.filter((category) =>
+      todos.some((todo) => todo.category === category)
+    )
+  );
   constructor() {
     super({ todos: [], categories: [] });
   }
@@ -72,4 +77,15 @@ export class TodosStore extends ComponentStore<TodosState> {
     ...state,
     todos: state.todos.filter((todo) => todo.id !== payload.id),
   }));
+
+  readonly toggleCategoryFilter = this.updater(
+    (state, payload: { category: string; checked: boolean }) => ({
+      ...state,
+      todos: state.todos.map((todo) =>
+        todo.category === payload.category
+          ? { ...todo, show: payload.checked }
+          : todo
+      ),
+    })
+  );
 }
