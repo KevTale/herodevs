@@ -1,4 +1,8 @@
+# General comments
+
 TLDR: https://www.loom.com/share/54a0406e52764fea924bcc7c8d98e300
+(I noticed that floating elements (dialog etc) do not appears in the video, this is due to Loom only recording the browser window, not the whole screen)
+
 
 - I added NX because angular 16 with jest and Testing Library fails for some reasons, which does not with NX
 - I changed data.service.ts to todos.store.ts to make it more explicit
