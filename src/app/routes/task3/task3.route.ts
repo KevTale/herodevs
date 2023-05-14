@@ -1,10 +1,10 @@
 import {
+  AddTodoWithCategoryComponent,
   EditTodoComponent,
   RemoveTodoComponent,
   TodosListComponent,
 } from '@features/todos';
 
-import { AddTodoWithCategoryComponent } from '@features/todos/add-todo-with-category.component';
 import { Component } from '@angular/core';
 import { TitleComponent } from '@ui/title/title.component';
 

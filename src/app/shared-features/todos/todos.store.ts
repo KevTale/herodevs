@@ -73,6 +73,20 @@ export class TodosStore extends ComponentStore<TodosState> {
     })
   );
 
+  readonly editWithCategory = this.updater(
+    (state, payload: { id: string; text: string; category: string }) => ({
+      ...state,
+      todos: state.todos.map((todo) =>
+        todo.id === payload.id
+          ? { ...todo, text: payload.text, category: payload.category }
+          : todo
+      ),
+      categories: state.categories.includes(payload.category)
+        ? state.categories
+        : [...state.categories, payload.category],
+    })
+  );
+
   readonly remove = this.updater((state, payload: { id: string }) => ({
     ...state,
     todos: state.todos.filter((todo) => todo.id !== payload.id),

@@ -8,6 +8,13 @@ describe('Task2Route', () => {
 
   beforeEach(async () => {
     component = await render(Task2Route);
+
+    HTMLDialogElement.prototype.show = jest.fn(function mock(
+      this: HTMLDialogElement
+    ) {
+      this.open = true;
+    });
+
     HTMLDialogElement.prototype.showModal = jest.fn(function mock(
       this: HTMLDialogElement
     ) {

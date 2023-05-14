@@ -1,13 +1,13 @@
-import { Component, inject } from '@angular/core';
 import {
+  AddTodoWithCategoryComponent,
   EditTodoComponent,
+  FilterTodosComponent,
   RemoveTodoComponent,
   TodosListComponent,
   TodosStore,
 } from '@features/todos';
+import { Component, inject } from '@angular/core';
 
-import { AddTodoWithCategoryComponent } from '@features/todos/add-todo-with-category.component';
-import { FilterTodosComponent } from '@features/todos/filters-todos.component';
 import { NgIf } from '@angular/common';
 import { TitleComponent } from '@ui/title/title.component';
 

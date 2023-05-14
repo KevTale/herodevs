@@ -1,9 +1,4 @@
-import {
-  RenderResult,
-  screen,
-  waitForElementToBeRemoved,
-  within,
-} from '@testing-library/angular';
+import { RenderResult, screen, within } from '@testing-library/angular';
 
 import userEvent from '@testing-library/user-event';
 
@@ -11,11 +6,13 @@ export async function editTodo({
   component,
   name,
   newName,
+  newCategory,
   action,
 }: {
   component: RenderResult<unknown>;
   name: string;
-  newName: string;
+  newName?: string;
+  newCategory?: string;
   action: 'confirm' | 'cancel';
 }) {
   const todo = component.getByText(name).closest('li');
@@ -26,10 +23,19 @@ export async function editTodo({
 
   const dialog = screen.getByRole('dialog');
 
-  const titleInput = within(dialog).getByDisplayValue(name);
+  if (newName) {
+    const titleInput = within(dialog).getByPlaceholderText(/buy milk.../i);
+    await userEvent.clear(titleInput);
+    await userEvent.type(titleInput, newName);
+  }
 
-  await userEvent.clear(titleInput);
-  await userEvent.type(titleInput, newName);
+  if (newCategory) {
+    const categoryInput =
+      within(dialog).getByPlaceholderText(/Select category/i);
+    await userEvent.clear(categoryInput);
+    await userEvent.type(categoryInput, newCategory);
+  }
+
   if (action === 'confirm') {
     const save = screen.getByRole('button', {
       name: /save/i,

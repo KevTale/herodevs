@@ -5,7 +5,7 @@ import { addTodoWithCategory } from '@utils/tests/add-todo';
 import { removeTodo } from '@utils/tests';
 import userEvent from '@testing-library/user-event';
 
-fdescribe('Task4Route', () => {
+describe('Task4Route', () => {
   let component: RenderResult<Task4Route>;
   let todoListComponent: HTMLElement;
 
@@ -79,7 +79,7 @@ fdescribe('Task4Route', () => {
       category: 'Video games',
     });
 
-    const shoppingCheckbox = screen.getByRole('checkbox', {
+    const shoppingCheckbox = component.getByRole('checkbox', {
       name: /Shopping/i,
     });
 
